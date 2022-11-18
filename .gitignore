@@ -1,5 +1,8 @@
 # Binaries for programs and plugins
 *.exe
+*.settings
+*.project
+*.classpath
 *.exe~
 *.dll
 *.so
@@ -10,3 +13,4 @@
 *.out
 # Dependency directories (remove the comment below to include it)
 vendor/ 
+bin/
