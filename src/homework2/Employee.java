@@ -1,5 +1,5 @@
 package homework2;
 
-public class Employee {
+public class Employee extends Person{
 
 }
