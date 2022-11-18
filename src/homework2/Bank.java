@@ -1,5 +1,19 @@
 package homework2;
 
-public class Bank {
+import java.util.ArrayList;
 
+public class Bank {
+	
+	private String name;
+	private Adress adress;
+	private ArrayList<Client> clients;
+	
+	public Bank(String name, Adress adress) {
+		super();
+		this.name = name;
+		this.adress = adress;
+		clients = new ArrayList<>();
+	}
+	
+	
 }
