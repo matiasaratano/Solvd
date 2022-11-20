@@ -1,6 +1,6 @@
 package homework2;
 
-public class PrintService {
+public class Menu {
 	public static void printMenu() {
 	    System.out.println("Hello, press: " + "\n" +
 	            "\r" + "1.Register" + "\n" +
