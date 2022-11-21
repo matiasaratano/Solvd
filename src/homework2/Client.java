@@ -1,39 +1,39 @@
 package homework2;
 
-public class Client {
+public class Client extends Person {
 
-	private String name;
-	private String lastName;
-	private Adress adress;
+
 	private Card card;
 	private String phoneNumber;
 	private CreditSummary creditSummary;
 
 	public Client(String name, String lastName) {
-		this.name = name;
-		this.lastName = lastName;
+		this.setName(lastName);
+		this.setLastName(lastName);
 	}
 
 	public Client(String name, String lastName, Adress adress) {
-		this.name = name;
-		this.lastName = lastName;
-		this.adress = adress;
+		this.setName(lastName);
+		this.setLastName(lastName);
+		this.setAdress(adress);
 	}
 
 	public Client(String name, String lastName, Adress adress, CreditSummary creditSummary, String phoneNumber) {
-		this.name = name;
-		this.lastName = lastName;
-		this.adress = adress;
+		this.setName(lastName);
+		this.setLastName(lastName);
+		this.setAdress(adress);
 		this.setCreditSummary(creditSummary);
 		this.phoneNumber = phoneNumber;
 	}
 
+	@Override
 	public String getName() {
-		return name;
+		return this.getName();
 	}
 
+	@Override
 	public String getLastName() {
-		return lastName;
+		return this.getLastName();
 	}
 
 	public void setCard(Card card) {
@@ -58,7 +58,8 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [name=" + name + ", lastName=" + lastName + ", adress=" + adress + ", card=" + card
+		return "Client [name=" + this.getName() + ", lastName=" + this.getLastName() + ", adress=" + this.getAdress()
+				+ ", card=" + card
 				+ ", phoneNumber=" + phoneNumber + ", creditSummary=" + creditSummary + "]";
 	}
 
