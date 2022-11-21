@@ -4,13 +4,13 @@ public class Account {
 
 	private Money balance;
 	private static int uid = 0;
-	private String phoneNumber;
 	private int id;
 	private Client client;
+	private static final String ENTER_VALID_AMOUNT = "Enter a valid amount";
 
 	public Account(Client client, String phoneNumber) {
 		this.client = client;
-		this.phoneNumber = phoneNumber;
+		this.client.setPhoneNumber(phoneNumber);
 		balance = new Money();
 		this.balance.setBalance(0);
 		uid++;
@@ -38,12 +38,21 @@ public class Account {
 	}
 
 	public String getPhoneNumber() {
-		return this.phoneNumber;
+		return this.client.getPhoneNumber();
 	}
 
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	// ver porque se rompe si pongo letras
 	public void depositMoney(long depositAmount) {
 		if (depositAmount < 0) {
-			System.out.println("Enter a valid amount");
+			System.out.println(ENTER_VALID_AMOUNT);
 		} else {
 			this.balance.setBalance(balance.getBalance() + depositAmount);
 			System.out.println("You have deposit " + depositAmount + " to your account." + "\n" + "Balance is now: "
@@ -51,9 +60,10 @@ public class Account {
 		}
 	}
 
+	// ver porque se rompe si pongo letras
 	public void withdrawal(long withdrawalAmount) {
 		if (withdrawalAmount < 0) {
-			System.out.println("Enter a valid amount");
+			System.out.println(ENTER_VALID_AMOUNT);
 		} else if (this.balance.getBalance() < withdrawalAmount) {
 			System.out.println("You don't have enough funds.");
 		} else {
@@ -64,11 +74,12 @@ public class Account {
 
 	}
 
+	// ver porque se rompe si pongo letras
 	public void transferMoney(Account thisAccount, Account toAccount, long amountToTransfer) {
 		if (thisAccount.getID() == toAccount.getID()) {
 			System.out.println("Same Account");
 		} else if (amountToTransfer < 0) {
-			System.out.println("Enter a valid amount");
+			System.out.println(ENTER_VALID_AMOUNT);
 		} else if (thisAccount.getBalance() > 0) {
 			toAccount.setBalance(toAccount.getBalance() + amountToTransfer);
 			thisAccount.setBalance(this.balance.getBalance() - amountToTransfer);
@@ -78,10 +89,11 @@ public class Account {
 
 	}
 
+
 	@Override
 	public String toString() {
 		return "Name: " + getFirstName() + "\n" + "Last name: " + getLastName() + "\n" + "Balance: " + getBalance()
-				+ "\n" + "ID: " + getID();
+		+ "\n" + "ID: " + getID();
 	}
 
 }

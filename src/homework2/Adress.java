@@ -9,7 +9,6 @@ public class Adress {
 	private String zipCode;
 
 	public Adress(String country, String province, String town, String streetAdress, String zipCode) {
-		super();
 		this.country = country;
 		this.province = province;
 		this.town = town;
