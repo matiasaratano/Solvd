@@ -3,6 +3,8 @@ package homework2;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import homework2.persons.Client;
+
 public class Bank {
 
 	private String name;
@@ -138,15 +140,23 @@ public class Bank {
 
 	public boolean isApproved(CreditSummary creditSummary) {
 		boolean isApproved = false;
-
 		if (!creditSummary.isDefaulter() && !creditSummary.hasCredit() && creditSummary.getSalary() > 0
-				&& creditSummary.getPatrimony() >= 50000) {
+				&& creditSummary.getPatrimony() >= creditSummary.getSalary() * 5) {
 			isApproved = true;
+			System.out.println("Credit Approved, it will be equal to 5 salaries");
 		} else {
 			System.out.println("Credit Refused");
 		}
 
 		return isApproved;
 
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Adress getAdress() {
+		return adress;
 	}
 }

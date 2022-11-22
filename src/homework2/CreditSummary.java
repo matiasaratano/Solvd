@@ -1,5 +1,7 @@
 package homework2;
 
+import java.util.Objects;
+
 public class CreditSummary {
 
 	private int salary;
@@ -44,6 +46,27 @@ public class CreditSummary {
 
 	public void setHasCredit(boolean hasCredit) {
 		this.hasCredit = hasCredit;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(hasCredit, isDefaulter, patrimony, salary);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		CreditSummary other = (CreditSummary) obj;
+		return hasCredit == other.hasCredit && isDefaulter == other.isDefaulter && patrimony == other.patrimony
+				&& salary == other.salary;
 	}
 
 	@Override

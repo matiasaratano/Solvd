@@ -1,39 +1,31 @@
-package homework2;
+package homework2.persons;
+
+import java.util.Objects;
+
+import homework2.Adress;
+import homework2.Card;
+import homework2.CreditSummary;
 
 public class Client extends Person {
-
 
 	private Card card;
 	private String phoneNumber;
 	private CreditSummary creditSummary;
 
 	public Client(String name, String lastName) {
-		this.setName(lastName);
-		this.setLastName(lastName);
+		super(name, lastName);
 	}
 
 	public Client(String name, String lastName, Adress adress) {
-		this.setName(lastName);
-		this.setLastName(lastName);
+		super(name, lastName);
 		this.setAdress(adress);
 	}
 
 	public Client(String name, String lastName, Adress adress, CreditSummary creditSummary, String phoneNumber) {
-		this.setName(lastName);
-		this.setLastName(lastName);
+		super(name, lastName);
 		this.setAdress(adress);
 		this.setCreditSummary(creditSummary);
 		this.phoneNumber = phoneNumber;
-	}
-
-	@Override
-	public String getName() {
-		return this.getName();
-	}
-
-	@Override
-	public String getLastName() {
-		return this.getLastName();
 	}
 
 	public void setCard(Card card) {
@@ -57,10 +49,34 @@ public class Client extends Person {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(card, creditSummary, phoneNumber);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!super.equals(obj)) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Client other = (Client) obj;
+		return Objects.equals(card, other.card) && Objects.equals(creditSummary, other.creditSummary)
+				&& Objects.equals(phoneNumber, other.phoneNumber);
+	}
+
+	@Override
 	public String toString() {
 		return "Client [name=" + this.getName() + ", lastName=" + this.getLastName() + ", adress=" + this.getAdress()
-				+ ", card=" + card
-				+ ", phoneNumber=" + phoneNumber + ", creditSummary=" + creditSummary + "]";
+		+ ", card=" + card
+		+ ", phoneNumber=" + phoneNumber + ", creditSummary=" + creditSummary + "]";
 	}
 
 }

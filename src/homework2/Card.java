@@ -1,5 +1,7 @@
 package homework2;
 
+import java.util.Objects;
+
 public class Card {
 
 	private String cardNumber;
@@ -28,6 +30,36 @@ public class Card {
 
 	public String getName() {
 		return name;
+	}
+
+	public int getCvv() {
+		return cvv;
+	}
+
+	public void setCvv(int cvv) {
+		this.cvv = cvv;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(bank, cardNumber, cvv, dateExp, dateFrom, name, scheme, type);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Card other = (Card) obj;
+		return Objects.equals(bank, other.bank) && Objects.equals(cardNumber, other.cardNumber) && cvv == other.cvv
+				&& Objects.equals(dateExp, other.dateExp) && Objects.equals(dateFrom, other.dateFrom)
+				&& Objects.equals(name, other.name) && scheme == other.scheme && type == other.type;
 	}
 
 	@Override

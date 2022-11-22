@@ -1,5 +1,7 @@
 package homework2;
 
+import homework2.persons.Client;
+
 public class Account {
 
 	private Money balance;
