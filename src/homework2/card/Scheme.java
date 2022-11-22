@@ -1,4 +1,4 @@
-package homework2;
+package homework2.card;
 
 public enum Scheme {
 	

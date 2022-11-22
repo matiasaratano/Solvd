@@ -15,6 +15,14 @@ public abstract class Person {
 		this.lastName = lastName;
 	}
 
+	protected Person(String name, String lastName, Adress adress) {
+		this.name = name;
+		this.lastName = lastName;
+		this.adress = adress;
+	}
+
+	public abstract void getFullName();
+
 	public String getName() {
 		return name;
 	}

@@ -3,8 +3,8 @@ package homework2.persons;
 import java.util.Objects;
 
 import homework2.Adress;
-import homework2.Card;
 import homework2.CreditSummary;
+import homework2.card.Card;
 
 public class Client extends Person {
 
@@ -17,14 +17,12 @@ public class Client extends Person {
 	}
 
 	public Client(String name, String lastName, Adress adress) {
-		super(name, lastName);
-		this.setAdress(adress);
+		super(name, lastName, adress);
 	}
 
 	public Client(String name, String lastName, Adress adress, CreditSummary creditSummary, String phoneNumber) {
-		super(name, lastName);
-		this.setAdress(adress);
-		this.setCreditSummary(creditSummary);
+		super(name, lastName, adress);
+		this.creditSummary = creditSummary;
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -77,6 +75,11 @@ public class Client extends Person {
 		return "Client [name=" + this.getName() + ", lastName=" + this.getLastName() + ", adress=" + this.getAdress()
 		+ ", card=" + card
 		+ ", phoneNumber=" + phoneNumber + ", creditSummary=" + creditSummary + "]";
+	}
+
+	@Override
+	public void getFullName() {
+		System.out.println(this.getName() + " " + this.getLastName());
 	}
 
 }
