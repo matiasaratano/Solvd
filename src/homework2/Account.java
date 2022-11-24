@@ -75,10 +75,10 @@ public class Account {
 
 	public void transferMoney(Account thisAccount, Account toAccount, long amountToTransfer) {
 		if (thisAccount.getID() == toAccount.getID()) {
-			System.out.println("Same Account");
+			System.out.println("Same Account, not valid");
 		} else if (amountToTransfer < 0) {
 			System.out.println(ENTER_VALID_AMOUNT);
-		} else if (thisAccount.getBalance() > 0) {
+		} else if (thisAccount.getBalance() > amountToTransfer) {
 			toAccount.setBalance(toAccount.getBalance() + amountToTransfer);
 			thisAccount.setBalance(this.balance.getBalance() - amountToTransfer);
 		} else {

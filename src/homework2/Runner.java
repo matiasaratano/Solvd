@@ -28,7 +28,6 @@ public class Runner {
 			case 3:
 				exitRequested = true;
 				break;
-
 			default:
 				System.out.println("Wrong input");
 				break;

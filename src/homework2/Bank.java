@@ -79,8 +79,17 @@ public class Bank {
 
 	}
 
+	public static boolean isPhoneNumberCorrect(String phoneNumber) {
+		if (phoneNumber.length() != 10) {
+			System.out.println("Phone number must be 10 digits.");
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	public void manageAccount() {
-		Account selectedAccount = readAccount();
+		Account selectedAccount = this.readAccount();
 		boolean exitRequested = false;
 		while (!exitRequested) {
 			Menu.existAccountMenu();
@@ -104,21 +113,17 @@ public class Bank {
 				String accountPhoneNumber = scanner.next();
 				if (isPhoneNumberCorrect(accountPhoneNumber)) {
 					Account accountToTransfer = lookupAccount(accountPhoneNumber);
-					if (selectedAccount.getID() == accountToTransfer.getID()) {
-						System.out.println("Same Account, not valid");
-					} else {
-						System.out.println("Enter the amount of money you would like to transfer:");
-						long moneyToTransfer = (long) scanner.nextDouble();
-						selectedAccount.transferMoney(selectedAccount, accountToTransfer, moneyToTransfer);
-					}
-
+					System.out.println("Enter the amount of money you would like to transfer:");
+					long moneyToTransfer = (long) scanner.nextDouble();
+					selectedAccount.transferMoney(selectedAccount, accountToTransfer, moneyToTransfer);
 				}
 				break;
 			case 5:
-				if (isApproved(selectedAccount.getClient().getCreditSummary())) {
-					selectedAccount.getClient().getCreditSummary().setHasCredit(true);
-					selectedAccount.depositMoney(
-							(long) selectedAccount.getClient().getCreditSummary().getSalary() * 5);
+				CreditSummary creditSum = selectedAccount.getClient().getCreditSummary();
+				long creditDepositAmount = this.getCredit(creditSum);
+				if (isApproved(creditSum, creditDepositAmount)) {
+					creditSum.setHasCredit(true);
+					selectedAccount.depositMoney(creditDepositAmount);
 				}
 				break;
 			case 6:
@@ -132,32 +137,32 @@ public class Bank {
 		}
 	}
 
-	public static boolean isPhoneNumberCorrect(String phoneNumber) {
-		if (phoneNumber.length() != 10) {
-			System.out.println("Phone number must be 10 digits.");
-			return false;
-		} else {
-			return true;
-		}
+	private long getCredit(CreditSummary creditSummary) {
+		long creditAmount=0;
+
+		do {
+			System.out.println("Enter the amount (up to 10 salaries) or 0 to close");
+			creditAmount = (long) scanner.nextDouble();
+		} while (creditAmount < 0 || creditAmount > creditSummary.getSalary() * 10);
+
+		return creditAmount;
+
 	}
 
-
-	public boolean isApproved(CreditSummary creditSummary) {
+	public boolean isApproved(CreditSummary creditSummary, long creditAmount) {
 		boolean isApproved = false;
 
-		if (creditSummary == null) {
+		if (creditAmount == 0) {
+			System.out.println("Exit");
+		} else if (creditSummary == null) {
 			System.out.println("Credit Refused, no credit summary in your account");
 		} else
-			if (!creditSummary.isDefaulter() && !creditSummary.hasCredit() && creditSummary.getSalary() > 0
-					&& creditSummary.getPatrimony() >= creditSummary.getSalary() * 5) {
+			if (!creditSummary.isDefaulter() && !creditSummary.hasCredit() && creditSummary.getSalary() > 0) {
 				isApproved = true;
-				System.out.println("Credit Approved, it will be equal to 5 salaries");
-			} else {
+				System.out.println("Credit Approved");
+			} else  {
 				System.out.println("Credit Refused");
 			}
-
-		return isApproved;
-
+			return isApproved;
 	}
-
 }
