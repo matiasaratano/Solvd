@@ -9,15 +9,18 @@ public abstract class Person {
 	private String name;
 	private String lastName;
 	private Adress adress;
+	private String phoneNumber;
 
-	protected Person(String name, String lastName) {
+	protected Person(String name, String lastName, String phoneNumber) {
 		this.name = name;
 		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
 	}
 
-	protected Person(String name, String lastName, Adress adress) {
+	protected Person(String name, String lastName, String phoneNumber, Adress adress) {
 		this.name = name;
 		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
 		this.adress = adress;
 	}
 
@@ -47,6 +50,13 @@ public abstract class Person {
 		this.adress = adress;
 	}
 
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
 	@Override
 	public String toString() {
@@ -73,5 +83,7 @@ public abstract class Person {
 		return Objects.equals(adress, other.adress) && Objects.equals(lastName, other.lastName)
 				&& Objects.equals(name, other.name);
 	}
+
+
 
 }

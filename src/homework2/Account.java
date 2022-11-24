@@ -10,9 +10,8 @@ public class Account {
 	private Client client;
 	private static final String ENTER_VALID_AMOUNT = "Enter a valid amount";
 
-	public Account(Client client, String phoneNumber) {
+	public Account(Client client) {
 		this.client = client;
-		this.client.setPhoneNumber(phoneNumber);
 		balance = new Money();
 		this.balance.setBalance(0);
 		uid++;
@@ -51,7 +50,6 @@ public class Account {
 		this.client = client;
 	}
 
-	// ver porque se rompe si pongo letras
 	public void depositMoney(long depositAmount) {
 		if (depositAmount < 0) {
 			System.out.println(ENTER_VALID_AMOUNT);
@@ -62,7 +60,6 @@ public class Account {
 		}
 	}
 
-	// ver porque se rompe si pongo letras
 	public void withdrawal(long withdrawalAmount) {
 		if (withdrawalAmount < 0) {
 			System.out.println(ENTER_VALID_AMOUNT);
@@ -76,7 +73,6 @@ public class Account {
 
 	}
 
-	// ver porque se rompe si pongo letras
 	public void transferMoney(Account thisAccount, Account toAccount, long amountToTransfer) {
 		if (thisAccount.getID() == toAccount.getID()) {
 			System.out.println("Same Account");
@@ -90,7 +86,6 @@ public class Account {
 		}
 
 	}
-
 
 	@Override
 	public String toString() {

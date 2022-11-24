@@ -19,6 +19,14 @@ public class Bank {
 		scanner = new Scanner(System.in);
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public Adress getAdress() {
+		return adress;
+	}
+
 	public Account lookupAccount(int accountID, String phoneNumber) {
 		for (Account account : accounts) {
 			if (account.getID() == accountID && account.getPhoneNumber().equals(phoneNumber)) {
@@ -39,8 +47,8 @@ public class Bank {
 		return null;
 	}
 
-	public void registerAccount(Client client, String phoneNumber) {
-		accounts.add(new Account(client, phoneNumber));
+	public void registerAccount(Client client) {
+		accounts.add(new Account(client));
 	}
 
 	public void registerAccount() {
@@ -51,7 +59,7 @@ public class Bank {
 		System.out.println("Phone number?");
 		String phoneNumber = scanner.next();
 		if (isPhoneNumberCorrect(phoneNumber)) {
-			accounts.add(new Account(new Client(firstName, lastName), phoneNumber));
+			accounts.add(new Account(new Client(firstName, lastName, phoneNumber)));
 			System.out.println("You have created account successfully!" + "\n" + "Your account ID is: "
 					+ accounts.get(accounts.size() - 1).getID());
 
@@ -60,12 +68,8 @@ public class Bank {
 
 	public Account readAccount() {
 		Account selectedAccount = null;
-
 		while (selectedAccount == null) {
 			System.out.println("Please enter your ID:");
-
-			// ver try catch porque se me rompe si pongo letra
-
 			int accountID = scanner.nextInt();
 			System.out.println("Please enter your phone number:");
 			String phoneNumber = scanner.next();
@@ -140,23 +144,20 @@ public class Bank {
 
 	public boolean isApproved(CreditSummary creditSummary) {
 		boolean isApproved = false;
-		if (!creditSummary.isDefaulter() && !creditSummary.hasCredit() && creditSummary.getSalary() > 0
-				&& creditSummary.getPatrimony() >= creditSummary.getSalary() * 5) {
-			isApproved = true;
-			System.out.println("Credit Approved, it will be equal to 5 salaries");
-		} else {
-			System.out.println("Credit Refused");
-		}
+
+		if (creditSummary == null) {
+			System.out.println("Credit Refused, no credit summary in your account");
+		} else
+			if (!creditSummary.isDefaulter() && !creditSummary.hasCredit() && creditSummary.getSalary() > 0
+					&& creditSummary.getPatrimony() >= creditSummary.getSalary() * 5) {
+				isApproved = true;
+				System.out.println("Credit Approved, it will be equal to 5 salaries");
+			} else {
+				System.out.println("Credit Refused");
+			}
 
 		return isApproved;
 
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public Adress getAdress() {
-		return adress;
-	}
 }
