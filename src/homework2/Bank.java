@@ -121,7 +121,7 @@ public class Bank {
 			case 5:
 				CreditSummary creditSum = selectedAccount.getClient().getCreditSummary();
 				long creditDepositAmount = this.getCredit(creditSum);
-				if (isApproved(creditSum, creditDepositAmount)) {
+				if (creditSum != null && isApproved(creditSum, creditDepositAmount)) {
 					creditSum.setHasCredit(true);
 					selectedAccount.depositMoney(creditDepositAmount);
 				}
@@ -139,11 +139,14 @@ public class Bank {
 
 	private long getCredit(CreditSummary creditSummary) {
 		long creditAmount=0;
-
-		do {
-			System.out.println("Enter the amount (up to 10 salaries) or 0 to close");
-			creditAmount = (long) scanner.nextDouble();
-		} while (creditAmount < 0 || creditAmount > creditSummary.getSalary() * 10);
+		if (creditSummary == null) {
+			System.out.println("Credit Refused, no credit summary in your account, update it at your nearest bank");
+		} else {
+			do {
+				System.out.println("Enter the amount (up to 10 salaries) or 0 to close");
+				creditAmount = (long) scanner.nextDouble();
+			} while (creditAmount < 0 || creditAmount > creditSummary.getSalary() * 10);
+		}
 
 		return creditAmount;
 
@@ -154,15 +157,12 @@ public class Bank {
 
 		if (creditAmount == 0) {
 			System.out.println("Exit");
-		} else if (creditSummary == null) {
-			System.out.println("Credit Refused, no credit summary in your account");
-		} else
-			if (!creditSummary.isDefaulter() && !creditSummary.hasCredit() && creditSummary.getSalary() > 0) {
-				isApproved = true;
-				System.out.println("Credit Approved");
-			} else  {
-				System.out.println("Credit Refused");
-			}
-			return isApproved;
+		} else if (!creditSummary.isDefaulter() && !creditSummary.hasCredit() && creditSummary.getSalary() > 0) {
+			isApproved = true;
+			System.out.println("Credit Approved");
+		} else  {
+			System.out.println("Credit Refused, call the bank to find out your credit status");
+		}
+		return isApproved;
 	}
 }
