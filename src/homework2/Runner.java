@@ -46,7 +46,7 @@ public class Runner {
 				CardType.DEBIT);
 		CreditSummary credSummary1 = new CreditSummary(4000, 50000, false, false);
 		CreditSummary credSummary2 = new CreditSummary(3000, 150000, false, true);
-		CreditSummary credSummary3 = new CreditSummary(2000, 2000, false, false);
+		CreditSummary credSummary3 = new CreditSummary(2000, 200, false, false);
 		Client client1 = new Client("Jhon", "Florence", "1231231231", adress2, credSummary1);
 		Client client2 = new Client("Richard", "Rodriguez", "1234567899", adress3, credSummary2);
 		Client client3 = new Client("Mark", "Zucke", "1234567899", adress3, credSummary3);
