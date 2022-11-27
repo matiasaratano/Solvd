@@ -68,9 +68,5 @@ public class Client extends Person {
 		+ ", phoneNumber=" + getPhoneNumber() + ", creditSummary=" + creditSummary + "]";
 	}
 
-	@Override
-	public void getFullName() {
-		System.out.println(this.getName() + " " + this.getLastName());
-	}
 
 }

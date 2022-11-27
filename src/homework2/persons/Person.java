@@ -22,9 +22,12 @@ public abstract class Person {
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
 		this.adress = adress;
+
 	}
 
-	public abstract void getFullName();
+	public void getFullName() {
+		System.out.println(this.getName() + " " + this.getLastName());
+	}
 
 	public String getName() {
 		return name;

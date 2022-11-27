@@ -54,6 +54,7 @@ public class Runner {
 		bank.registerAccount(client1);
 		bank.registerAccount(client2);
 		bank.registerAccount(client3);
+
 	}
 
 }
