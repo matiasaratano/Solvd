@@ -8,23 +8,15 @@ import homework2.persons.Client;
 public class Bank {
 
     private String name;
-    private Adress adress;
+    private Address address;
     private ArrayList<Account> accounts;
     private Scanner scanner;
 
-    public Bank(String name, Adress adress) {
+    public Bank(String name, Address address) {
         this.name = name;
-        this.adress = adress;
+        this.address = address;
         accounts = new ArrayList<>();
         scanner = new Scanner(System.in);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Adress getAdress() {
-        return adress;
     }
 
     public Account lookupAccount(int accountID, String phoneNumber) {
@@ -163,8 +155,14 @@ public class Bank {
         } else if (!creditSummary.isDefaulter() && !creditSummary.hasCredit() && creditSummary.getSalary() > 0) {
             isApproved = true;
             System.out.println("Credit Approved");
+        } else if (creditSummary.isDefaulter()) {
+            System.out.println("Credit denied because of a default, call the bank to find out your credit status");
+        } else if (creditSummary.hasCredit()) {
+            System.out.println("Credit denied because you already have another one");
+        } else if (creditSummary.getSalary() > 0) {
+            System.out.println("Credit denied because of your stated salary, call the bank to update it");
         } else {
-            System.out.println("Credit Refused, call the bank to find out your credit status");
+            System.out.println("Credit Denied");
         }
         return isApproved;
     }

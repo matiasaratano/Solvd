@@ -12,7 +12,7 @@ public class Account {
 
     public Account(Client client) {
         this.client = client;
-        //balance = new Money();
+        //balance = new Money();   Currency?
         this.balance = 0;
         uid++;
         this.id = uid;
