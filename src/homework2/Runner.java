@@ -31,7 +31,7 @@ public class Runner {
                     break;
             }
         }
-    
+
         scanner.close();
     }
 

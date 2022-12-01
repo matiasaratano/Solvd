@@ -19,6 +19,7 @@ public class Client extends Person {
         super(name, lastName, phoneNumber, address);
     }
 
+
     public Client(String name, String lastName, String phoneNumber, Address address, CreditSummary creditSummary) {
         super(name, lastName, phoneNumber, address);
         this.creditSummary = creditSummary;
@@ -35,6 +36,11 @@ public class Client extends Person {
 
     public void setCreditSummary(CreditSummary creditSummary) {
         this.creditSummary = creditSummary;
+    }
+
+    @Override
+    public void getFullName() {
+        System.out.println("Name: " + getName() + getLastName());
     }
 
     @Override

@@ -25,9 +25,7 @@ public abstract class Person {
 
     }
 
-    public void getFullName() {
-        System.out.println(this.getName() + " " + this.getLastName());
-    }
+    public abstract void getFullName();
 
     public String getName() {
         return name;
