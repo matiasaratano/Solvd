@@ -5,10 +5,12 @@ import homework2.persons.Client;
 public class CheckingAccount extends Account implements IDeposit, IWithdrawal, ITransfer {
 
     private static final String ENTER_VALID_AMOUNT = "Enter a valid amount";
+    private static final AccountType accType = AccountType.CHECKING;
 
     public CheckingAccount(Client client) {
         super(client);
     }
+
 
     @Override
     public void depositMoney(long depositAmount) {
@@ -50,6 +52,11 @@ public class CheckingAccount extends Account implements IDeposit, IWithdrawal, I
             System.out.println("You don't have enough funds");
         }
 
+    }
+
+    @Override
+    public String getSummary() {
+        return "ID: " + getID() + ", " + getClient().getFullName() + ", " + accType;
     }
 
     @Override

@@ -9,7 +9,7 @@ public class Bank {
 
     private String name;
     private Address address;
-    private ArrayList<CheckingAccount> accounts; //Falta implementar para trabajar con cualquier tipo de Account
+    private ArrayList<Account> accounts; //Falta implementar para trabajar con cualquier tipo de Account
     private Scanner scanner;
 
     public Bank(String name, Address address) {
@@ -19,8 +19,8 @@ public class Bank {
         scanner = new Scanner(System.in);
     }
 
-    public CheckingAccount lookupAccount(int accountID, String phoneNumber) {
-        for (CheckingAccount account : accounts) {
+    public Account lookupAccount(int accountID, String phoneNumber) {
+        for (Account account : accounts) {
             if (account.getID() == accountID && account.getPhoneNumber().equals(phoneNumber)) {
                 return account;
             }
@@ -29,8 +29,8 @@ public class Bank {
         return null;
     }
 
-    public CheckingAccount lookupAccount(String phoneNumber) {
-        for (CheckingAccount account : accounts) {
+    public Account lookupAccount(String phoneNumber) {
+        for (Account account : accounts) {
             if (account.getPhoneNumber().equals(phoneNumber)) {
                 return account;
             }
@@ -39,8 +39,19 @@ public class Bank {
         return null;
     }
 
-    public void registerAccount(Client client) {
+
+    public void listAccounts() {
+        for (Account account : accounts) {
+            System.out.println(account.getSummary());
+        }
+    }
+
+    public void registerCheckingAccount(Client client) {
         accounts.add(new CheckingAccount(client));
+    }
+
+    public void registerSavingsAccount(Client client) {
+        accounts.add(new SavingsAccount(client));
     }
 
     public void registerAccount() {
@@ -51,15 +62,38 @@ public class Bank {
         System.out.println("Phone number?");
         String phoneNumber = scanner.next();
         if (isPhoneNumberCorrect(phoneNumber)) {
-            accounts.add(new CheckingAccount(new Client(firstName, lastName, phoneNumber)));
-            System.out.println("You have created account successfully!" + "\n" + "Your account ID is: "
-                    + accounts.get(accounts.size() - 1).getID());
+            boolean exitRequested = false;
+            while (!exitRequested) {
+                Menu.accTypeMenu();
+                int choice = Integer.parseInt(scanner.next());
+                switch (choice) {
+                    case 1:
+                        accounts.add(new CheckingAccount(new Client(firstName, lastName, phoneNumber)));
+                        System.out.println("You have created a checking account successfully!" + "\n" + "Your account ID is: "
+                                + accounts.get(accounts.size() - 1).getID());
+                        exitRequested = true;
+                        break;
+                    case 2:
+                        accounts.add(new SavingsAccount(new Client(firstName, lastName, phoneNumber)));
+                        System.out.println("You have created a savings account successfully!" + "\n" + "Your account ID is: "
+                                + accounts.get(accounts.size() - 1).getID());
+                        exitRequested = true;
+                        break;
+                    case 3:
+                        exitRequested = true;
+                        break;
+                    default:
+                        System.out.println("Wrong input");
+                        break;
+                }
+            }
+
 
         }
     }
 
-    public CheckingAccount readAccount() {
-        CheckingAccount selectedAccount = null;
+    public Account readAccount() {
+        Account selectedAccount = null;
         while (selectedAccount == null) {
             System.out.println("Please enter your ID:");
             int accountID = scanner.nextInt();
@@ -81,7 +115,12 @@ public class Bank {
     }
 
     public void manageAccount() {
-        CheckingAccount selectedAccount = this.readAccount();
+        Account selectedAccount = this.readAccount();
+    /*    if (this.readAccount() instanceof CheckingAccount) {
+            selectedAccount = (CheckingAccount) this.readAccount();
+        } else if (this.readAccount() instanceof SavingsAccount) {
+            selectedAccount = (SavingsAccount) this.readAccount();
+        }*/
         boolean exitRequested = false;
         while (!exitRequested) {
             Menu.existAccountMenu();

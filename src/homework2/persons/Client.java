@@ -39,8 +39,8 @@ public class Client extends Person {
     }
 
     @Override
-    public void getFullName() {
-        System.out.println("Name: " + getName() + getLastName());
+    public String getFullName() {
+        return "Name: " + getName() + " " + getLastName();
     }
 
     @Override

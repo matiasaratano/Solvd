@@ -25,7 +25,7 @@ public abstract class Person {
 
     }
 
-    public abstract void getFullName();
+    public abstract String getFullName();
 
     public String getName() {
         return name;

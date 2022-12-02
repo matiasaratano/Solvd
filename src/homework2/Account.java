@@ -2,7 +2,7 @@ package homework2;
 
 import homework2.persons.Client;
 
-public abstract class Account {
+public abstract class Account implements IDeposit, IWithdrawal, ITransfer {
     private long balance;
     private static int uid = 0;
     private final int id;
@@ -44,6 +44,8 @@ public abstract class Account {
     public Client getClient() {
         return client;
     }
+
+    public abstract String getSummary();
 
 
 }

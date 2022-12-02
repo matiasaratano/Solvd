@@ -15,20 +15,27 @@ public class Runner {
         boolean exitRequested = false;
         while (!exitRequested) {
             Menu.printMenu();
-            int choice = Integer.parseInt(scanner.next());
-            switch (choice) {
-                case 1:
-                    bank.registerAccount();
-                    break;
-                case 2:
-                    bank.manageAccount();
-                    break;
-                case 3:
-                    exitRequested = true;
-                    break;
-                default:
-                    System.out.println("Wrong input");
-                    break;
+            try {
+                int choice = Integer.parseInt(scanner.next());
+                switch (choice) {
+                    case 1:
+                        bank.registerAccount();
+                        break;
+                    case 2:
+                        bank.manageAccount();
+                        break;
+                    case 3:
+                        bank.listAccounts();
+                        break;
+                    case 4:
+                        exitRequested = true;
+                        break;
+                    default:
+                        System.out.println("Wrong input");
+                        break;
+                }
+            } catch (Exception ex) {
+                System.out.println("Input Error");
             }
         }
 
@@ -49,9 +56,9 @@ public class Runner {
         Client client2 = new Client("Richard", "Rodriguez", "1234567899", address3, credSummary2);
         Client client3 = new Client("Mark", "Zucke", "1234567899", address3, credSummary3);
         client1.setCard(card1);
-        bank.registerAccount(client1);
-        bank.registerAccount(client2);
-        bank.registerAccount(client3);
+        bank.registerCheckingAccount(client1);
+        bank.registerCheckingAccount(client2);
+        bank.registerCheckingAccount(client3);
         return bank;
 
     }
