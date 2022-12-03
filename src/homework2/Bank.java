@@ -55,41 +55,44 @@ public class Bank {
     }
 
     public void registerAccount() {
-        System.out.println("First name?");
-        String firstName = scanner.next();
-        System.out.println("Last name?");
-        String lastName = scanner.next();
-        System.out.println("Phone number?");
-        String phoneNumber = scanner.next();
-        if (isPhoneNumberCorrect(phoneNumber)) {
-            boolean exitRequested = false;
-            while (!exitRequested) {
-                Menu.accTypeMenu();
-                int choice = Integer.parseInt(scanner.next());
-                switch (choice) {
-                    case 1:
-                        accounts.add(new CheckingAccount(new Client(firstName, lastName, phoneNumber)));
-                        System.out.println("You have created a checking account successfully!" + "\n" + "Your account ID is: "
-                                + accounts.get(accounts.size() - 1).getID());
-                        exitRequested = true;
-                        break;
-                    case 2:
-                        accounts.add(new SavingsAccount(new Client(firstName, lastName, phoneNumber)));
-                        System.out.println("You have created a savings account successfully!" + "\n" + "Your account ID is: "
-                                + accounts.get(accounts.size() - 1).getID());
-                        exitRequested = true;
-                        break;
-                    case 3:
-                        exitRequested = true;
-                        break;
-                    default:
-                        System.out.println("Wrong input");
-                        break;
+        try {
+            System.out.println("First name?");
+            String firstName = scanner.next();
+            System.out.println("Last name?");
+            String lastName = scanner.next();
+            System.out.println("Phone number?");
+            String phoneNumber = scanner.next();
+            if (isPhoneNumberCorrect(phoneNumber)) {
+                boolean exitRequested = false;
+                while (!exitRequested) {
+                    Menu.accTypeMenu();
+                    int choice = Integer.parseInt(scanner.next());
+                    switch (choice) {
+                        case 1:
+                            accounts.add(new CheckingAccount(new Client(firstName, lastName, phoneNumber)));
+                            System.out.println("You have created a checking account successfully!" + "\n" + "Your account ID is: "
+                                    + accounts.get(accounts.size() - 1).getID());
+                            exitRequested = true;
+                            break;
+                        case 2:
+                            accounts.add(new SavingsAccount(new Client(firstName, lastName, phoneNumber)));
+                            System.out.println("You have created a savings account successfully!" + "\n" + "Your account ID is: "
+                                    + accounts.get(accounts.size() - 1).getID());
+                            exitRequested = true;
+                            break;
+                        case 3:
+                            exitRequested = true;
+                            break;
+                        default:
+                            System.out.println("Wrong input");
+                            break;
+                    }
                 }
             }
-
-
+        } catch (Exception ex) {
+            System.out.println("Input Error...");
         }
+
     }
 
     public Account readAccount() {

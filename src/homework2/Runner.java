@@ -10,12 +10,13 @@ import homework2.persons.Client;
 public class Runner {
 
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         Bank bank = initBank();
         boolean exitRequested = false;
         while (!exitRequested) {
-            Menu.printMenu();
             try {
+                Menu.printMenu();
                 int choice = Integer.parseInt(scanner.next());
                 switch (choice) {
                     case 1:
