@@ -1,5 +1,6 @@
 package homework2;
 
+import homework2.exceptions.InvalidAmountException;
 import homework2.persons.Client;
 
 public class SavingsAccount extends Account implements IDeposit, IWithdrawal {
@@ -19,17 +20,19 @@ public class SavingsAccount extends Account implements IDeposit, IWithdrawal {
     }
 
     @Override
-    public void depositMoney(long depositAmount) {
+    public void depositMoney(long depositAmount) throws InvalidAmountException {
 
     }
 
     @Override
-    public void withdrawal(long withdrawalAmount) {
+    public void withdrawal(long withdrawalAmount) throws InvalidAmountException {
 
     }
 
     @Override
-    public void transferMoney(Account thisAccount, Account toAccount, long amountToTransfer) {
+    public void transferMoney(Account thisAccount, Account toAccount, long amountToTransfer) throws InvalidAmountException {
 
     }
+
+
 }

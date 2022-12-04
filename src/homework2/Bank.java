@@ -3,6 +3,7 @@ package homework2;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import homework2.exceptions.InvalidAmountException;
 import homework2.persons.Client;
 
 public class Bank {
@@ -117,13 +118,8 @@ public class Bank {
         }
     }
 
-    public void manageAccount() {
+    public void manageAccount() throws InvalidAmountException {
         Account selectedAccount = this.readAccount();
-    /*    if (this.readAccount() instanceof CheckingAccount) {
-            selectedAccount = (CheckingAccount) this.readAccount();
-        } else if (this.readAccount() instanceof SavingsAccount) {
-            selectedAccount = (SavingsAccount) this.readAccount();
-        }*/
         boolean exitRequested = false;
         while (!exitRequested) {
             Menu.existAccountMenu();

@@ -1,5 +1,6 @@
 package homework2;
 
+import homework2.exceptions.InvalidAmountException;
 import homework2.persons.Client;
 
 public class CheckingAccount extends Account implements IDeposit, IWithdrawal, ITransfer {
@@ -13,9 +14,10 @@ public class CheckingAccount extends Account implements IDeposit, IWithdrawal, I
 
 
     @Override
-    public void depositMoney(long depositAmount) {
+    public void depositMoney(long depositAmount) throws InvalidAmountException {
         if (depositAmount < 0) {
             System.out.println(ENTER_VALID_AMOUNT);
+            throw new InvalidAmountException("Enter a valid amount");
         } else {
             this.setBalance(getBalance() + depositAmount);
             System.out.println("You have deposit " + depositAmount + " to your account." + "\n" + "Balance is now: "
@@ -24,9 +26,10 @@ public class CheckingAccount extends Account implements IDeposit, IWithdrawal, I
     }
 
     @Override
-    public void withdrawal(long withdrawalAmount) {
+    public void withdrawal(long withdrawalAmount) throws InvalidAmountException {
         if (withdrawalAmount < 0) {
             System.out.println(ENTER_VALID_AMOUNT);
+            throw new InvalidAmountException("Enter a valid amount");
         } else if (this.getBalance() < withdrawalAmount) {
             System.out.println("You don't have enough funds.");
         } else {
@@ -38,11 +41,12 @@ public class CheckingAccount extends Account implements IDeposit, IWithdrawal, I
     }
 
     @Override
-    public void transferMoney(Account thisAccount, Account toAccount, long amountToTransfer) {
+    public void transferMoney(Account thisAccount, Account toAccount, long amountToTransfer) throws InvalidAmountException {
         if (thisAccount.getID() == toAccount.getID()) {
             System.out.println("Same Account, not valid");
         } else if (amountToTransfer < 0) {
             System.out.println(ENTER_VALID_AMOUNT);
+            throw new InvalidAmountException("Enter a valid amount");
         } else if (thisAccount.getBalance() > amountToTransfer) {
             toAccount.setBalance(this.getBalance() + amountToTransfer);
             thisAccount.setBalance(this.getBalance() - amountToTransfer);
