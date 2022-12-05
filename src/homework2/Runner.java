@@ -1,10 +1,12 @@
 package homework2;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import homework2.card.Card;
 import homework2.card.CardType;
 import homework2.card.Scheme;
+import homework2.exceptions.*;
 import homework2.persons.Client;
 
 public class Runner {
@@ -35,9 +37,24 @@ public class Runner {
                         System.out.println("Wrong input");
                         break;
                 }
-            } catch (Exception ex) {
-                System.out.println("Input Error");
+            } catch (NumberFormatException | InputMismatchException e) {
+                System.err.println("Invalid input. Please enter a valid number.");
+            } catch (IncorrectNumberException | InvalidAmountException | InsufficientFundsException |
+                     InvalidAccountException e) {
+                System.err.println(e.getMessage());
             }
+
+
+
+            /*catch (Exception e) {
+                switch (e.getClass().getSimpleName()) {
+                    case "NumberFormatException":
+                        throw new CustomNumberFormatException("Error: Invalid number format.");
+                    case "InputMismatchException":
+                        throw new CustomNumberFormatException("Error: Invalid input value.");
+                    default:
+                        System.err.println(e.getMessage());
+                }*/
         }
 
         scanner.close();

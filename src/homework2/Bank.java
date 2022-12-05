@@ -3,7 +3,7 @@ package homework2;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import homework2.exceptions.InvalidAmountException;
+import homework2.exceptions.*;
 import homework2.persons.Client;
 
 public class Bank {
@@ -55,7 +55,7 @@ public class Bank {
         accounts.add(new SavingsAccount(client));
     }
 
-    public void registerAccount() {
+    public void registerAccount() throws IncorrectNumberException {
         try {
             System.out.println("First name?");
             String firstName = scanner.next();
@@ -90,8 +90,8 @@ public class Bank {
                     }
                 }
             }
-        } catch (Exception ex) {
-            System.out.println("Input Error...");
+        } catch (IncorrectNumberException ex) {
+            throw new IncorrectNumberException("Phone number must be 10 digits.");
         }
 
     }
@@ -109,16 +109,15 @@ public class Bank {
 
     }
 
-    public static boolean isPhoneNumberCorrect(String phoneNumber) {
+    public static boolean isPhoneNumberCorrect(String phoneNumber) throws IncorrectNumberException {
         if (phoneNumber.length() != 10) {
-            System.out.println("Phone number must be 10 digits.");
-            return false;
+            throw new IncorrectNumberException("Phone number must be 10 digits.");
         } else {
             return true;
         }
     }
 
-    public void manageAccount() throws InvalidAmountException {
+    public void manageAccount() throws InvalidAmountException, InsufficientFundsException, InvalidAccountException, IncorrectNumberException {
         Account selectedAccount = this.readAccount();
         boolean exitRequested = false;
         while (!exitRequested) {
