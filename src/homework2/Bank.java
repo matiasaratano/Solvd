@@ -1,6 +1,7 @@
 package homework2;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 import homework2.exceptions.*;
@@ -13,6 +14,7 @@ public class Bank {
     private ArrayList<Account> accounts; //Falta implementar para trabajar con cualquier tipo de Account
     private Scanner scanner;
 
+    
     public Bank(String name, Address address) {
         this.name = name;
         this.address = address;

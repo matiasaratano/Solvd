@@ -37,11 +37,11 @@ public class Runner {
                         System.out.println("Wrong input");
                         break;
                 }
-            } catch (NumberFormatException | InputMismatchException e) {
-                System.err.println("Invalid input. Please enter a valid number.");
             } catch (IncorrectNumberException | InvalidAmountException | InsufficientFundsException |
                      InvalidAccountException e) {
                 System.err.println(e.getMessage());
+            } catch (NumberFormatException | InputMismatchException e) {
+                System.err.println("Invalid input. Please enter a valid number.");
             }
 
 

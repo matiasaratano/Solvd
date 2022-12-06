@@ -58,7 +58,7 @@ public class CheckingAccount extends Account implements IDeposit, IWithdrawal, I
 
     @Override
     public String getSummary() {
-        return "ID: " + getID() + ", " + getClient().getFullName() + ", " + accType;
+        return "ID: " + getID() + ", " + getClient().getFullName() + ", Account Type: " + accType;
     }
 
     @Override
