@@ -14,7 +14,7 @@ public class Bank {
     private ArrayList<Account> accounts; //Falta implementar para trabajar con cualquier tipo de Account
     private Scanner scanner;
 
-    
+
     public Bank(String name, Address address) {
         this.name = name;
         this.address = address;
