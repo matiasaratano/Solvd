@@ -40,12 +40,11 @@ public class Runner {
             } catch (IncorrectNumberException | InvalidAmountException | InsufficientFundsException |
                      InvalidAccountException e) {
                 System.err.println(e.getMessage());
-            } catch (NumberFormatException | InputMismatchException e) {
-                System.err.println("Invalid input. Please enter a valid number.");
-            }
-
-
-
+            } catch (NumberFormatException e) {
+                throw new CustomNumberFormatException("Invalid input. Please enter a valid number.");
+                //System.err.println("Invalid input. Please enter a valid number.");
+            } catch (InputMismatchException e) {
+                throw new CustomInputMismatchException("Invalid input.");
             /*catch (Exception e) {
                 switch (e.getClass().getSimpleName()) {
                     case "NumberFormatException":
@@ -55,6 +54,7 @@ public class Runner {
                     default:
                         System.err.println(e.getMessage());
                 }*/
+            }
         }
 
         scanner.close();

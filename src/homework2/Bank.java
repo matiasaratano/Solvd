@@ -169,21 +169,26 @@ public class Bank {
     }
 
     private long getCredit(CreditSummary creditSummary) {
-        long creditAmount = 0;
-        if (creditSummary == null) {
-            System.out.println("Credit Refused, no credit summary in your account, update it at your nearest bank");
-        } else {
-            do {
-                if (creditAmount > creditSummary.getSalary() * 10) {
-                    System.out.println("You cant get more than 10 salaries");
-                }
-                System.out.println("Enter the amount (up to 10 salaries) or 0 to close");
-                creditAmount = (long) scanner.nextDouble();
-            } while (creditAmount < 0 || creditAmount > creditSummary.getSalary() * 10);
+        long creditAmount;
+        try {
+
+
+            creditAmount = 0;
+            if (creditSummary == null) {
+                System.out.println("Credit Refused, no credit summary in your account, update it at your nearest bank");
+            } else {
+                do {
+                    if (creditAmount > creditSummary.getSalary() * 10) {
+                        System.out.println("You cant get more than 10 salaries");
+                    }
+                    System.out.println("Enter the amount (up to 10 salaries) or 0 to close");
+                    creditAmount = (long) scanner.nextDouble();
+                } while (creditAmount < 0 || creditAmount > creditSummary.getSalary() * 10);
+            }
+        } catch (RuntimeException e) {
+            throw new CustomInputMismatchException("Wrong input");
         }
-
         return creditAmount;
-
     }
 
     public boolean isApproved(CreditSummary creditSummary, long creditAmount) {
