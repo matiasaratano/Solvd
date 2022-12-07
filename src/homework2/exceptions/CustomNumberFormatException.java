@@ -6,9 +6,9 @@ public class CustomNumberFormatException extends NumberFormatException {
         super(message);
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Error: Invalid number format";
-    }
+    }*/
 
 }

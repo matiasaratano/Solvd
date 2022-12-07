@@ -8,10 +8,18 @@ import homework2.card.CardType;
 import homework2.card.Scheme;
 import homework2.exceptions.*;
 import homework2.persons.Client;
+import org.apache.logging.log4j.*;
 
 public class Runner {
 
+
+    private static Logger logger = LogManager.getLogger(Runner.class.getName());
+
     public static void main(String[] args) {
+        logger.info("Test");
+        logger.error("Test");
+        logger.debug("Test");
+
 
         Scanner scanner = new Scanner(System.in);
         Bank bank = initBank();
@@ -22,10 +30,19 @@ public class Runner {
                 int choice = Integer.parseInt(scanner.next());
                 switch (choice) {
                     case 1:
-                        bank.registerAccount();
+                        try {
+                            bank.registerAccount();
+                        } catch (IncorrectNumberException e) {
+                            System.err.println(e.getMessage());
+                        }
                         break;
                     case 2:
-                        bank.manageAccount();
+                        try {
+                            bank.manageAccount();
+                        } catch (InvalidAmountException | InsufficientFundsException | InvalidAccountException |
+                                 IncorrectNumberException | IncorrectDetailException e) {
+                            System.err.println(e.getMessage());
+                        }
                         break;
                     case 3:
                         bank.listAccounts();
@@ -37,26 +54,12 @@ public class Runner {
                         System.out.println("Wrong input");
                         break;
                 }
-            } catch (IncorrectNumberException | InvalidAmountException | InsufficientFundsException |
-                     InvalidAccountException e) {
-                System.err.println(e.getMessage());
             } catch (NumberFormatException e) {
                 throw new CustomNumberFormatException("Invalid input. Please enter a valid number.");
-                //System.err.println("Invalid input. Please enter a valid number.");
             } catch (InputMismatchException e) {
                 throw new CustomInputMismatchException("Invalid input.");
-            /*catch (Exception e) {
-                switch (e.getClass().getSimpleName()) {
-                    case "NumberFormatException":
-                        throw new CustomNumberFormatException("Error: Invalid number format.");
-                    case "InputMismatchException":
-                        throw new CustomNumberFormatException("Error: Invalid input value.");
-                    default:
-                        System.err.println(e.getMessage());
-                }*/
             }
         }
-
         scanner.close();
     }
 

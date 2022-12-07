@@ -22,24 +22,23 @@ public class Bank {
         scanner = new Scanner(System.in);
     }
 
-    public Account lookupAccount(int accountID, String phoneNumber) {
+    public Account lookupAccount(int accountID, String phoneNumber) throws IncorrectDetailException {
         for (Account account : accounts) {
             if (account.getID() == accountID && account.getPhoneNumber().equals(phoneNumber)) {
                 return account;
             }
         }
-        System.out.println("One of the details is incorrect");
-        return null;
+        throw new IncorrectDetailException("One of the details is incorrect");
     }
 
-    public Account lookupAccount(String phoneNumber) {
+    public Account lookupAccount(String phoneNumber) throws IncorrectDetailException {
         for (Account account : accounts) {
             if (account.getPhoneNumber().equals(phoneNumber)) {
                 return account;
             }
         }
-        System.out.println("One of the details is incorrect");
-        return null;
+        throw new IncorrectDetailException("One of the details is incorrect");
+
     }
 
 
@@ -98,7 +97,7 @@ public class Bank {
 
     }
 
-    public Account readAccount() {
+    public Account readAccount() throws IncorrectDetailException {
         Account selectedAccount = null;
         while (selectedAccount == null) {
             System.out.println("Please enter your ID:");
@@ -119,7 +118,7 @@ public class Bank {
         }
     }
 
-    public void manageAccount() throws InvalidAmountException, InsufficientFundsException, InvalidAccountException, IncorrectNumberException {
+    public void manageAccount() throws InvalidAmountException, InsufficientFundsException, InvalidAccountException, IncorrectNumberException, IncorrectDetailException {
         Account selectedAccount = this.readAccount();
         boolean exitRequested = false;
         while (!exitRequested) {
@@ -171,8 +170,6 @@ public class Bank {
     private long getCredit(CreditSummary creditSummary) {
         long creditAmount;
         try {
-
-
             creditAmount = 0;
             if (creditSummary == null) {
                 System.out.println("Credit Refused, no credit summary in your account, update it at your nearest bank");

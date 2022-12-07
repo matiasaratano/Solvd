@@ -7,8 +7,8 @@ public class CustomInputMismatchException extends RuntimeException {
         super(message);
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Error: Invalid input value. ";
-    }
+    }*/
 }
