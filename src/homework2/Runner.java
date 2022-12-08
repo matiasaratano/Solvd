@@ -17,8 +17,8 @@ public class Runner {
 
     public static void main(String[] args) {
         logger.info("Test");
-        logger.error("Test");
-        logger.debug("Test");
+        logger.error("Error");
+        logger.debug("Debug");
 
 
         Scanner scanner = new Scanner(System.in);
