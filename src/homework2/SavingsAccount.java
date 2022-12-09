@@ -2,6 +2,8 @@ package homework2;
 
 import homework2.exceptions.InsufficientFundsException;
 import homework2.exceptions.InvalidAmountException;
+import homework2.interfaces.IDeposit;
+import homework2.interfaces.IWithdrawal;
 import homework2.persons.Client;
 
 public class SavingsAccount extends Account implements IDeposit, IWithdrawal {

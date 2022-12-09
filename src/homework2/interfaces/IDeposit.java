@@ -1,4 +1,4 @@
-package homework2;
+package homework2.interfaces;
 
 import homework2.exceptions.InvalidAmountException;
 

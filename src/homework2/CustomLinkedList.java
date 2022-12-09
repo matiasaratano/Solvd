@@ -1,20 +1,18 @@
 package homework2;
 
-import java.util.LinkedList;
-
-public class CustomLinkedList<T> {
-    private static class Node<T> {
-        private T data;
-        private Node<T> next;
+public class CustomLinkedList<E> {
+    private static class Node<E> {
+        private E data;
+        private Node<E> next;
 
 
-        public Node(T data, Node<T> next) {
+        public Node(E data, Node<E> next) {
             this.data = data;
             this.next = next;
         }
     }
 
-    private Node<T> head;
+    private Node<E> head;
     private int size;
 
     public CustomLinkedList() {
@@ -30,18 +28,18 @@ public class CustomLinkedList<T> {
         return size == 0;
     }
 
-    public void add(T element) {
-        Node<T> newNode = new Node<>(element, head);
+    public void add(E element) {
+        Node<E> newNode = new Node<>(element, head);
         head = newNode;
         size++;
     }
 
-    public T get(int index) {
+    public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
 
-        Node<T> current = head;
+        Node<E> current = head;
         for (int i = 0; i < index; i++) {
             current = current.next;
         }
@@ -57,7 +55,7 @@ public class CustomLinkedList<T> {
         if (index == 0) {
             head = head.next;
         } else {
-            Node<T> current = head;
+            Node<E> current = head;
             for (int i = 0; i < index - 1; i++) {
                 current = current.next;
             }

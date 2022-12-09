@@ -1,5 +1,8 @@
 package homework2;
 
+import homework2.interfaces.IDeposit;
+import homework2.interfaces.ITransfer;
+import homework2.interfaces.IWithdrawal;
 import homework2.persons.Client;
 
 public abstract class Account implements IDeposit, IWithdrawal, ITransfer {
