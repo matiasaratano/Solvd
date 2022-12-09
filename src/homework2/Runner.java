@@ -13,12 +13,12 @@ import org.apache.logging.log4j.*;
 public class Runner {
 
 
-    private static Logger logger = LogManager.getLogger(Runner.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(Runner.class.getName());
 
     public static void main(String[] args) {
-        logger.info("Test");
-        logger.error("Error");
-        logger.debug("Debug");
+        LOGGER.info("Test");
+        LOGGER.error("Error");
+        LOGGER.debug("Debug");
 
 
         Scanner scanner = new Scanner(System.in);
