@@ -1,4 +1,4 @@
-package homework2;
+package homework2.accounts;
 
 public enum AccountType {
 

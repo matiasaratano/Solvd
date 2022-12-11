@@ -1,9 +1,11 @@
 package homework2;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Scanner;
 
+import homework2.accounts.Account;
+import homework2.accounts.CheckingAccount;
+import homework2.accounts.SavingsAccount;
 import homework2.exceptions.*;
 import homework2.persons.Client;
 

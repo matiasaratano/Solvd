@@ -1,4 +1,4 @@
-package homework2;
+package homework2.accounts;
 
 import homework2.interfaces.IDeposit;
 import homework2.interfaces.ITransfer;

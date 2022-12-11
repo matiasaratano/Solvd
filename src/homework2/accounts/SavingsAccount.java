@@ -1,5 +1,7 @@
-package homework2;
+package homework2.accounts;
 
+import homework2.accounts.Account;
+import homework2.accounts.AccountType;
 import homework2.exceptions.InsufficientFundsException;
 import homework2.exceptions.InvalidAmountException;
 import homework2.interfaces.IDeposit;

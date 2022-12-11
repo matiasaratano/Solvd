@@ -1,6 +1,6 @@
 package homework2.interfaces;
 
-import homework2.Account;
+import homework2.accounts.Account;
 import homework2.exceptions.InsufficientFundsException;
 import homework2.exceptions.InvalidAccountException;
 import homework2.exceptions.InvalidAmountException;

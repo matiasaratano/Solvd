@@ -42,6 +42,7 @@ public class Runner {
                         } catch (InvalidAmountException | InsufficientFundsException | InvalidAccountException |
                                  IncorrectNumberException | IncorrectDetailException e) {
                             System.err.println(e.getMessage());
+                            LOGGER.warn(e.getMessage());
                         }
                         break;
                     case 3:
