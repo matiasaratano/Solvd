@@ -1,15 +1,18 @@
 package homework2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import homework2.accounts.Account;
 import homework2.accounts.CheckingAccount;
 import homework2.accounts.SavingsAccount;
 import homework2.exceptions.*;
+import homework2.interfaces.IAccTypeMenu;
+import homework2.interfaces.IPrintBasicOperations;
 import homework2.persons.Client;
 
-public class Bank {
+public class Bank implements IPrintBasicOperations {
 
     private String name;
     private Address address;
@@ -69,7 +72,7 @@ public class Bank {
             if (isPhoneNumberCorrect(phoneNumber)) {
                 boolean exitRequested = false;
                 while (!exitRequested) {
-                    Menu.accTypeMenu();
+                    IAccTypeMenu.IAccTypeMenu();
                     int choice = Integer.parseInt(scanner.next());
                     switch (choice) {
                         case 1:
@@ -208,5 +211,21 @@ public class Bank {
             System.out.println("Credit Denied");
         }
         return isApproved;
+    }
+
+
+    @Override
+    public void IPrintBasicOperations() {
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("Deposit", "A deposit is when you add money to your account.");
+        map.put("Withdrawal", "A withdrawal is when you take money out of your account.");
+        map.put("Transfer", "A transfer is when you move money from one account to another.");
+
+        System.out.println("Basic bank operations: ");
+        for (String key : map.keySet()) {
+            String value = map.get(key);
+            System.out.println(key + ": " + value);
+        }
     }
 }

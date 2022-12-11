@@ -4,29 +4,33 @@ import java.util.Objects;
 
 import homework2.Address;
 import homework2.CreditSummary;
+import homework2.linkedlist.CustomLinkedList;
 import homework2.card.Card;
 
 public class Client extends Person {
 
-    private Card card;
+    private CustomLinkedList<Card> card;
     private CreditSummary creditSummary;
 
     public Client(String name, String lastName, String phoneNumber) {
         super(name, lastName, phoneNumber);
+        this.card = new CustomLinkedList<>();
     }
 
     public Client(String name, String lastName, String phoneNumber, Address address) {
         super(name, lastName, phoneNumber, address);
+        this.card = new CustomLinkedList<>();
     }
 
 
     public Client(String name, String lastName, String phoneNumber, Address address, CreditSummary creditSummary) {
         super(name, lastName, phoneNumber, address);
         this.creditSummary = creditSummary;
+        this.card = new CustomLinkedList<>();
     }
 
     public void setCard(Card card) {
-        this.card = card;
+        this.card.add(card);
     }
 
 
@@ -70,7 +74,7 @@ public class Client extends Person {
     @Override
     public String toString() {
         return "Client [name=" + this.getName() + ", lastName=" + this.getLastName() + ", address=" + this.getAddress()
-                + ", card=" + card
+
                 + ", phoneNumber=" + getPhoneNumber() + ", creditSummary=" + creditSummary + "]";
     }
 

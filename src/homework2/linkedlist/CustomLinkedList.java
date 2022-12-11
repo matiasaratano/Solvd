@@ -1,4 +1,4 @@
-package homework2;
+package homework2.linkedlist;
 
 public class CustomLinkedList<E> {
     private static class Node<E> {

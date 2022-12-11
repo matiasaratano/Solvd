@@ -1,5 +1,6 @@
 package homework2;
 
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ import homework2.card.Scheme;
 import homework2.exceptions.*;
 import homework2.persons.Client;
 import org.apache.logging.log4j.*;
+
 
 public class Runner {
 
@@ -33,7 +35,7 @@ public class Runner {
                         try {
                             bank.registerAccount();
                         } catch (IncorrectNumberException e) {
-                            System.err.println(e.getMessage());
+                            LOGGER.warn(e.getMessage());
                         }
                         break;
                     case 2:
@@ -41,18 +43,21 @@ public class Runner {
                             bank.manageAccount();
                         } catch (InvalidAmountException | InsufficientFundsException | InvalidAccountException |
                                  IncorrectNumberException | IncorrectDetailException e) {
-                            System.err.println(e.getMessage());
                             LOGGER.warn(e.getMessage());
+
                         }
                         break;
                     case 3:
                         bank.listAccounts();
                         break;
                     case 4:
+                        bank.IPrintBasicOperations();
+                        break;
+                    case 5:
                         exitRequested = true;
                         break;
                     default:
-                        System.out.println("Wrong input");
+                        LOGGER.warn("Wrong input");
                         break;
                 }
             } catch (NumberFormatException e) {
@@ -65,6 +70,7 @@ public class Runner {
     }
 
     private static Bank initBank() {
+        HashMap hashMap = new HashMap();
         Address address1 = new Address("EEUU", "CA", "Venice", "ABC", "123");
         Address address2 = new Address("EEUU", "CA", "Santa Monica", "BCD", "234");
         Address address3 = new Address("EEUU", "CA", "Venice", "CDE", "345");
@@ -81,8 +87,10 @@ public class Runner {
         bank.registerCheckingAccount(client1);
         bank.registerCheckingAccount(client2);
         bank.registerCheckingAccount(client3);
-        return bank;
+        hashMap.put(0, address1);
 
+        return bank;
     }
+
 
 }
