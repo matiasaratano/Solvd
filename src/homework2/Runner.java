@@ -1,15 +1,15 @@
 package homework2;
 
-import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import homework2.card.Card;
 import homework2.card.CardType;
 import homework2.card.Scheme;
 import homework2.exceptions.*;
 import homework2.persons.Client;
-import org.apache.logging.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 
 public class Runner {
@@ -21,7 +21,7 @@ public class Runner {
         LOGGER.info("Test");
         LOGGER.error("Error");
         LOGGER.debug("Debug");
-
+        LOGGER.warn("Warn");
 
         Scanner scanner = new Scanner(System.in);
         Bank bank = initBank();
@@ -44,7 +44,6 @@ public class Runner {
                         } catch (InvalidAmountException | InsufficientFundsException | InvalidAccountException |
                                  IncorrectNumberException | IncorrectDetailException e) {
                             LOGGER.warn(e.getMessage());
-
                         }
                         break;
                     case 3:
@@ -70,7 +69,7 @@ public class Runner {
     }
 
     private static Bank initBank() {
-        HashMap hashMap = new HashMap();
+
         Address address1 = new Address("EEUU", "CA", "Venice", "ABC", "123");
         Address address2 = new Address("EEUU", "CA", "Santa Monica", "BCD", "234");
         Address address3 = new Address("EEUU", "CA", "Venice", "CDE", "345");
@@ -87,8 +86,6 @@ public class Runner {
         bank.registerCheckingAccount(client1);
         bank.registerCheckingAccount(client2);
         bank.registerCheckingAccount(client3);
-        hashMap.put(0, address1);
-
         return bank;
     }
 
